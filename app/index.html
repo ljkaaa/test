@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>智能对话系统</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app" class="app-root">
+      <header class="app-header">
+        <div class="brand">
+          <span class="brand-mark">🤖</span>
+          <span class="brand-name">智能对话</span>
+        </div>
+        <div class="header-actions">
+          <button id="themeToggle" class="icon-btn" title="切换主题" aria-label="切换主题">
+            <span class="icon" aria-hidden="true">🌗</span>
+          </button>
+          <button id="openSettings" class="icon-btn" title="设置" aria-label="设置">
+            <span class="icon" aria-hidden="true">⚙️</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="chat-container">
+        <div id="messages" class="messages" aria-live="polite" aria-label="聊天消息">
+          <div class="message bot">
+            <div class="avatar">🤖</div>
+            <div class="bubble">
+              你好！我是你的智能助手。输入问题并按回车键开始对话。
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="composer">
+        <div class="composer-inner">
+          <textarea id="input" class="input" rows="1" placeholder="问我任何问题… (Enter 发送，Shift+Enter 换行)" aria-label="消息输入"></textarea>
+          <div class="controls">
+            <button id="stopBtn" class="btn ghost" title="停止" aria-label="停止" disabled>停止</button>
+            <button id="sendBtn" class="btn primary" title="发送" aria-label="发送">发送</button>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <dialog id="settingsDialog" class="settings-dialog">
+      <form method="dialog" class="settings-form" id="settingsForm">
+        <h3>设置</h3>
+        <label class="field">
+          <span>OpenAI API Key</span>
+          <input id="apiKeyInput" type="password" placeholder="sk-..." autocomplete="off" />
+          <small>密钥仅保存在本地浏览器的 localStorage。</small>
+        </label>
+        <label class="field">
+          <span>模型</span>
+          <select id="modelSelect">
+            <option value="gpt-4o-mini">gpt-4o-mini (推荐)</option>
+            <option value="gpt-4o">gpt-4o</option>
+            <option value="gpt-4.1-mini">gpt-4.1-mini</option>
+            <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>系统提示词（可选）</span>
+          <textarea id="systemPromptInput" rows="3" placeholder="你是一个乐于助人的中文 AI 助手…"></textarea>
+        </label>
+        <div class="form-actions">
+          <button id="clearChatBtn" class="btn ghost" value="cancel">清空会话</button>
+          <div class="spacer"></div>
+          <button class="btn" value="cancel">取消</button>
+          <button id="saveSettingsBtn" class="btn primary" value="default">保存</button>
+        </div>
+        <p class="hint">没有 API Key 也可体验：将使用本地离线演示模式。</p>
+      </form>
+    </dialog>
+
+    <script src="./app.js"></script>
+  </body>
+  </html>
+
